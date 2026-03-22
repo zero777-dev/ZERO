@@ -1,0 +1,58 @@
+{
+  "name": "zero-assistant",
+  "version": "1.0.0",
+  "description": "ZERO - Your personal AI assistant like JARVIS from Iron Man. Autonomous, offline-capable, self-hosted.",
+  "type": "module",
+  "main": "src/index.ts",
+  "bin": {
+    "zero": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "dev": "bun run --watch src/index.ts",
+    "setup": "bun run src/setup.ts",
+    "test": "bun test",
+    "build": "bun build src/index.ts --outdir=dist --target=bun"
+  },
+  "dependencies": {
+    "ollama": "^0.5.8",
+    "inquirer": "^10.2.2",
+    "chalk": "^5.4.1",
+    "conf": "^12.0.0",
+    "boxen": "^8.0.1",
+    "ora": "^8.1.1",
+    "figlet": "^1.8.0",
+    "yaml": "^2.6.1",
+    "dotenv": "^16.4.7",
+    "node-fetch": "^3.3.2",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/inquirer": "^9.0.7",
+    "@types/figlet": "^1.5.8",
+    "bun-types": "^1.1.41",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai",
+    "assistant",
+    "agent",
+    "jarvis",
+    "autonomous",
+    "ollama",
+    "llm",
+    "self-hosted",
+    "offline"
+  ],
+  "author": "zero777-dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zero777-dev/zero"
+  }
+}

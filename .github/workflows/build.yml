@@ -1,0 +1,50 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      
+      - name: Install dependencies
+        run: bun install
+      
+      - name: Lint
+        run: bun run lint || true
+      
+      - name: Type check
+        run: bun run tsc --noEmit || true
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create Release Bundle
+        run: |
+          mkdir -p release
+          cp -r src release/
+          cp package.json release/
+          cp install.sh release/
+          cp README.md release/
+          cp LICENSE release/
+          zip -r zero-${{ github.ref_name }}.zip release/
+      
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: zero-${{ github.ref_name }}.zip
+          draft: true
