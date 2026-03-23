@@ -7,7 +7,7 @@
  * Like JARVIS from Iron Man - autonomous, intelligent, always ready
  */
 
-import { ZERO } from "./core.js";
+import { ZERO } from "./core/zeros.js";
 import { CLI } from "./channels/cli.js";
 import { Config } from "./utils/config.js";
 import { Logger } from "./utils/logger.js";

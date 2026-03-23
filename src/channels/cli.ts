@@ -6,7 +6,7 @@
 
 import { ZERO } from "../core/zeros.js";
 import { Logger } from "../utils/logger.js";
-import { readline } from "readline/promises";
+import readline from "readline/promises";
 
 export class CLI {
   private zero: ZERO;

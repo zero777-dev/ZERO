@@ -7,7 +7,8 @@
 import { BaseTool } from "./base.js";
 import { Logger } from "../../utils/logger.js";
 import type { ToolResult, FileInfo } from "../types.js";
-import { readdir, stat, readFile, writeFile, mkdir, rm, cp, mv } from "fs/promises";
+import { readdir, stat, readFile, writeFile, mkdir, rm, cp } from "fs/promises";
+import { rename } from "fs/promises";
 import { join, extname, basename } from "path";
 
 export class FileTool extends BaseTool {
@@ -253,7 +254,7 @@ export class FileTool extends BaseTool {
   
   private async moveFile(src: string, dest: string): Promise<ToolResult> {
     try {
-      await mv(src, dest, { recursive: true });
+      await rename(src, dest);
       return this.success({ src, dest, moved: true });
     } catch (error: any) {
       return this.failure(`Erreur déplacement: ${error.message}`);
